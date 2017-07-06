@@ -1,0 +1,44 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">LABEL</view>
+
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell--last-child">
+        <view class="zan-label">蓝色</view>
+        <view class="zan-label zan-label--primary">红色</view>
+        <view class="zan-label zan-label--disabled">黑色</view>
+      </view>
+    </view>
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell--last-child">
+        <view class="zan-label zan-label--primary zan-label--small">会员折扣</view>
+        <view class="zan-label zan-label--primary zan-label--small">返现</view>
+      </view>
+    </view>
+
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell--last-child">
+        <view class="zan-label zan-label--primary zan-label--small zan-label--plain">会员折扣</view>
+        <view class="zan-label zan-label--primary zan-label--small zan-label--plain">返现</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Label extends wepy.page {
+  config = {}
+  components = {}
+  data = {}
+  events = {}
+  methods = {}
+  onLoad() { }
+}
+</script>

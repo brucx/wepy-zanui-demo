@@ -1,0 +1,10 @@
+@import "badge.wxss";
+@import "btn.wxss";
+@import "card.wxss";
+@import "cell.wxss";
+@import "color.wxss";
+@import "form.wxss";
+@import "helper.wxss";
+@import "icon.wxss";
+@import "label.wxss";
+@import "panel.wxss";

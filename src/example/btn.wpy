@@ -1,0 +1,73 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">BUTTON</view>
+
+    <view class="zan-panel-title">普通按钮</view>
+    <view class="zan-panel">
+      <view class="zan-btns">
+        <button class="zan-btn">取消订单</button>
+        <button class="zan-btn zan-btn--primary">确认付款</button>
+        <button class="zan-btn zan-btn--danger">确认付款</button>
+        <button class="zan-btn zan-btn--warn">确认付款</button>
+      </view>
+    </view>
+
+    <view class="zan-panel-title">大号按钮，没有边框线及圆角</view>
+    <view class="zan-panel">
+      <button class="zan-btn zan-btn--large zan-btn--primary">确认付款</button>
+      <button class="zan-btn zan-btn--large zan-btn--warn">立即购买</button>
+      <button class="zan-btn zan-btn--large zan-btn--danger">立即购买</button>
+    </view>
+
+    <view class="zan-panel-title">小号按钮</view>
+    <view class="zan-panel" style="padding: 15px;">
+      <button class="zan-btn zan-btn--small">取消订单</button>
+      <button class="zan-btn zan-btn--small zan-btn--primary">确认付款</button>
+    </view>
+
+    <view class="zan-panel-title">迷你按钮</view>
+    <view class="zan-panel" style="padding: 15px;">
+      <button class="zan-btn zan-btn--mini zan-btn--plain">取消订单</button>
+      <button class="zan-btn zan-btn--mini zan-btn--primary zan-btn--plain">确认付款</button>
+      <button class="zan-btn zan-btn--mini zan-btn--warn zan-btn--plain">确认付款</button>
+      <button class="zan-btn zan-btn--mini zan-btn--danger zan-btn--plain">确认付款</button>
+    </view>
+
+    <view class="zan-panel-title">Loading</view>
+    <view class="zan-panel">
+      <view class="zan-btns">
+        <button class="zan-btn zan-btn--loading">取消订单</button>
+        <button class="zan-btn zan-btn--loading zan-btn--primary">确认付款</button>
+        <button class="zan-btn zan-btn--loading zan-btn--danger">确认付款</button>
+        <button class="zan-btn zan-btn--loading zan-btn--warn">确认付款</button>
+      </view>
+    </view>
+
+    <view class="zan-panel-title">Disabled</view>
+    <view class="zan-panel">
+      <view class="zan-btns">
+        <button class="zan-btn zan-btn--disabled" disabled>取消订单</button>
+        <button class="zan-btn zan-btn--disabled zan-btn--primary" disabled>确认付款</button>
+        <button class="zan-btn zan-btn--disabled zan-btn--danger" disabled>确认付款</button>
+        <button class="zan-btn zan-btn--disabled zan-btn--warn" disabled>确认付款</button>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Button extends wepy.page {
+  config = {}
+  components = {}
+  data = {}
+  methods = {}
+  onLoad() {}
+}
+</script>

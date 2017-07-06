@@ -1,0 +1,35 @@
+<style lang="less">
+
+</style>
+
+<template>
+<view class="container">
+
+  <view class="doc-title">LOADMORE</view>
+
+  <zanLoadmore1 :loading="_true" > </zanLoadmore1>
+  <zanLoadmore2 :nodata="_true" nodata_str="暂无数据 Wepy"></zanLoadmore2>
+  <zanLoadmore3 :nomore="_true" ></zanLoadmore3>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanLoadmore from '../components/zan-loadmore'
+
+export default class Loadmore extends wepy.page {
+  config = {}
+  components = {
+    zanLoadmore1: zanLoadmore,
+    zanLoadmore2: zanLoadmore,
+    zanLoadmore3: zanLoadmore,
+  }
+  data = {
+    _true: true,
+    _false: false
+  }
+  methods = {}
+  onLoad() {
+  }
+}
+</script>

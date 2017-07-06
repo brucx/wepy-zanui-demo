@@ -1,0 +1,37 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">DIALOG</view>
+
+    <view class="zan-btns" style="margin-top: 30vh;">
+      <button class="zan-btn" @tap="toggleDialog">
+        显示Dialog
+      </button>
+    </view>
+    <zanDialog content="Dialog内容 Wepy"/>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanDialog from '../components/zan-dialog'
+
+export default class Dialog extends wepy.page {
+  config = {}
+  components = {
+    zanDialog
+  }
+  data = {}
+  methods = {
+    toggleDialog() {
+      this.$invoke('zanDialog', 'toggleDialog')
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

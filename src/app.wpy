@@ -1,0 +1,81 @@
+<style lang="less">
+@import "zanui/index.wxss";
+
+.container {
+  background: #F9F9F9;
+  overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  content: ' ';
+  width: 100%;
+  height: 1rpx;
+  background-color: #e2e2e2;
+  z-index: 5;
+}
+
+.doc-title {
+  font-size: 25px;
+  line-height: 25px;
+  color: #666;
+  padding: 15px 0;
+  margin: 20px 15px;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+</style>
+
+<script>
+
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'example/dashboard',
+      'example/btn',
+      'example/badge',
+      'example/cell',
+      'example/label',
+      'example/loadmore',
+      'example/panel',
+      'example/tab',
+      'example/quantity',
+      'example/toptips',
+      'example/helper',
+      'example/form',
+      'example/steps',
+      'example/switch',
+      'example/card',
+      'example/toast',
+      'example/icon',
+      'example/dialog'
+    ],
+    window: {
+      'navigationBarBackgroundColor': '#FAFAFA',
+      'navigationBarTitleText': 'ZanUI in Wepy',
+      'navigationBarTextStyle': 'black',
+      'backgroundTextStyle': 'dark',
+      'backgroundColor': '#f9f9f9'
+    },
+    debug: true,
+    networkTimeout: {
+      'request': 10000,
+      'connectSocket': 10000,
+      'uploadFile': 10000,
+      'downloadFile': 10000
+    }
+  }
+
+  constructor() {
+    super()
+    this.use('promisify')
+    this.use('requestfix')
+  }
+}
+</script>

@@ -1,0 +1,87 @@
+<style type="less">
+.logo {
+  display: block;
+  margin: 40px auto;
+  width: 92px;
+  height: 82px;
+}
+</style>
+<template>
+  <view class="container">
+
+    <image class="logo" src="https://img.yzcdn.cn/public_files/2017/02/06/ee0ebced79a80457d77ce71c7d414c74.png"></image>
+
+    <view class="zan-panel">
+      <navigator wx:for="{{ list }}" wx:key="name" class="zan-cell zan-cell--access" url="{{ item.path }}">
+        <view class="zan-cell__bd">{{ item.name }}</view>
+        <view class="zan-cell__ft"></view>
+      </navigator>
+    </view>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Dashboard extends wepy.page {
+  data = {
+    list: [
+      {
+        name: 'Badge',
+        path: '/example/badge'
+      }, {
+        name: 'Button',
+        path: '/example/btn'
+      }, {
+        name: 'Card',
+        path: '/example/card'
+      }, {
+        name: 'Cell',
+        path: '/example/cell'
+      }, {
+        name: 'Dialog',
+        path: '/example/dialog'
+      }, {
+        name: 'Form',
+        path: '/example/form'
+      }, {
+        name: 'Helper',
+        path: '/example/helper'
+      }, {
+        name: 'Icon',
+        path: '/example/icon'
+      }, {
+        name: 'Label',
+        path: '/example/label'
+      }, {
+        name: 'Loadmore',
+        path: '/example/loadmore'
+      }, {
+        name: 'Panel',
+        path: '/example/panel'
+      }, {
+        name: 'Quantity',
+        path: '/example/quantity'
+      }, {
+        name: 'Steps',
+        path: '/example/steps'
+      }, {
+        name: 'Switch',
+        path: '/example/switch'
+      }, {
+        name: 'Tab',
+        path: '/example/tab'
+      }, {
+        name: 'Toast',
+        path: '/example/toast'
+      }, {
+        name: 'Toptips',
+        path: '/example/toptips'
+      }
+    ]
+  }
+
+  methods = {}
+}
+</script>

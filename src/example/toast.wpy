@@ -1,0 +1,38 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">TOAST</view>
+
+    <view class="zan-btns" style="margin-top: 30vh;">
+      <button class="zan-btn" @tap="showToast">
+        显示toast
+      </button>
+    </view>
+  </view>
+
+  <zanToast></zanToast>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanToast from '../components/zan-toast'
+
+export default class Toast extends wepy.page {
+  config = {}
+  components = {
+    zanToast
+  }
+  data = {}
+  methods = {
+    showToast() {
+      this.$invoke('zanToast', 'showZanToast', { title: 'toptips的内容 Wepy', timeout: 2000 })
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

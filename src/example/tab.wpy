@@ -1,0 +1,113 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">TAB</view>
+
+    <view style="margin: 20px 0">
+      <zanTab1 :tab.sync="tab1" componentId="tab1"></zanTab1>
+    </view>
+    <view style="margin: 20px 0">
+      <zanTab2 :tab.sync="tab2" componentId="tab2"></zanTab2>
+    </view>
+    <view style="margin: 20px 0">
+      <zanTab3 :tab.sync="tab3" componentId="tab3"></zanTab3>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanTab from '../components/zan-tab'
+
+export default class Tab extends wepy.page {
+  config = {}
+  components = {
+    zanTab1: zanTab,
+    zanTab2: zanTab,
+    zanTab3: zanTab
+  }
+  data = {
+    tab1: {
+      list: [{
+        id: 'all',
+        title: '全部'
+      }, {
+        id: 'topay',
+        title: '待付款'
+      }, {
+        id: 'tosend',
+        title: '待发货'
+      }, {
+        id: 'send',
+        title: '待收货'
+      }, {
+        id: 'sign',
+        title: '已完成'
+      }],
+      selectedId: 'all',
+      scroll: false
+    },
+    tab2: {
+      list: [{
+        id: '1',
+        title: '最新商品1'
+      }, {
+        id: '2',
+        title: '最新商品2'
+      }, {
+        id: '3',
+        title: '最新商品3'
+      }, {
+        id: '4',
+        title: '最新商品4'
+      }, {
+        id: '5',
+        title: '最新商品5'
+      }, {
+        id: '6',
+        title: '最新商品6'
+      }],
+      selectedId: '1',
+      scroll: true,
+      height: 45
+    },
+    tab3: {
+      list: [{
+        id: '1',
+        title: '商品1'
+      }, {
+        id: '2',
+        title: '商品2'
+      }, {
+        id: '3',
+        title: '商品3'
+      }, {
+        id: '4',
+        title: '商品4'
+      }, {
+        id: '5',
+        title: '商品5'
+      }, {
+        id: '6',
+        title: '商品6'
+      }],
+      selectedId: '1',
+      scroll: true,
+      height: 45
+    }
+  }
+  events = {
+    zanTabChange({ componentId, selectedId }, event) {
+      console.log(componentId, selectedId, event)
+      this[componentId].selectedId = selectedId
+      this.$apply()
+    }
+  }
+  methods = {}
+  onLoad() { }
+}
+</script>

@@ -1,0 +1,77 @@
+<style lang="less">
+.zan-toptips {
+  display: block;
+  position: fixed;
+  -webkit-transform: translateZ(0) translateY(-100%);
+  transform: translateZ(0) translateY(-100%);
+  width: 100%;
+  /* 至少有一行的高度，保证第一次动画显示正常 */
+  min-height: 32px;
+  top: 0;
+  line-height: 2.3;
+  font-size: 14px;
+  text-align: center;
+  color: #FFF;
+  background-color: #E64340;
+  z-index: 110;
+
+  /* 动画部分 */
+  transition: all 0.4s ease;
+}
+
+.zan-toptips--show {
+  -webkit-transform: translateZ(0) translateY(0);
+  transform: translateZ(0) translateY(0);
+}
+</style>
+<template>
+  <view class="zan-toptips {{ topTips.show ? 'zan-toptips--show' : '' }}"> {{ topTips.content }} </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class zanToptips extends wepy.component {
+  props = {}
+  data = {
+    topTips: {}
+  }
+  methods = {
+    showZanTopTips({ content = '', options = {} }, event) {
+      console.log('showZanTopTips', content, options)
+      let topTips = this.topTips || {}
+      // 如果已经有一个计时器在了，就清理掉先
+      if (topTips.timer) {
+        clearTimeout(topTips.timer)
+        topTips.timer = undefined
+      }
+
+      if (typeof options === 'number') {
+        options = {
+          duration: options
+        }
+      }
+
+      // options参数默认参数扩展
+      options = Object.assign({
+        duration: 3000
+      }, options)
+
+      // 设置定时器，定时关闭topTips
+      let timer = setTimeout(() => {
+        this.topTips.show = false
+        this.topTips.timer = undefined
+        this.$apply()
+      }, options.duration)
+
+      // 展示出topTips
+      this.topTips = {
+        show: true,
+        content,
+        options,
+        timer
+      }
+      this.$apply()
+    }
+  }
+}
+</script>

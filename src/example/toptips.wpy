@@ -1,0 +1,38 @@
+<style lang="less">
+
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">TOPTIPS</view>
+
+    <view class="zan-btns" style="margin-top: 30vh;">
+      <button class="zan-btn" @tap="showTopTips">
+        显示toptips
+      </button>
+    </view>
+  </view>
+
+  <zanToptips> </zanToptips>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanToptips from '../components/zan-toptips'
+
+export default class Toptips extends wepy.page {
+  config = {}
+  components = {
+    zanToptips
+  }
+  data = {}
+  methods = {
+    showTopTips() {
+      this.$invoke('zanToptips', 'showZanTopTips', { content: 'toptips的内容 Wepy', options: 1000 })
+    }
+  }
+  onLoad() {
+  }
+}
+</script>

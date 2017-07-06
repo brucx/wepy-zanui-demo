@@ -1,0 +1,65 @@
+<style lang="less">
+.zan-panel {
+  padding: 10px;
+}
+
+.zan-switch {
+  margin-right: 8px;
+}
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">QUANTITY</view>
+
+    <view style="padding: 40px 15px">
+      <zanQuantity1 :quantity.sync="quantity1" :min="min1" :max="max1" componentId="quantity1"> </zanQuantity1>
+    </view>
+
+    <!-- 当最大值等于最小值时，组件不可用 -->
+    <view style="padding: 40px 15px ">
+      <zanQuantity2 :quantity.sync="quantity2" :min="min2" :max="max2" componentId="quantity2"> </zanQuantity2>
+    </view>
+
+    <!-- small size -->
+    <view style="padding: 40px 15px ">
+      <zanQuantity3 :quantity.sync="quantity3" :min="min3" :max="max3" componentId="quantity3" size="small"> </zanQuantity3>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanQuantity from '../components/zan-quantity'
+
+export default class Quantity extends wepy.page {
+  config = {}
+  components = {
+    zanQuantity1: zanQuantity,
+    zanQuantity2: zanQuantity,
+    zanQuantity3: zanQuantity
+  }
+  data = {
+    quantity1: 10,
+    min1: 1,
+    max1: 20,
+    quantity2: 1,
+    min2: 1,
+    max2: 1,
+    quantity3: 10,
+    min3: 1,
+    max3: 20
+  }
+  events = {
+    zanQuantityChange({ componentId, quantity }, event) {
+      console.log(componentId, quantity, event)
+      this[componentId] = quantity
+      this.$apply()
+    }
+  }
+  methods = {}
+  onLoad() {
+  }
+}
+</script>

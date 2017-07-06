@@ -1,0 +1,56 @@
+<style lang="less">
+.demo {
+  padding: 40px 0;
+  display: flex;
+}
+.demo__item {
+  flex: 1;
+}
+.demo__icon {
+  margin: 0 auto;
+  width: 48px;
+  height: 48px;
+  background: #ddd;
+  border-radius: 4px;
+}
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">BADGE</view>
+
+    <view class="demo">
+      <view class="demo__item">
+        <view class="demo__icon zan-badge">
+        </view>
+      </view>
+      <view class="demo__item">
+        <view class="demo__icon zan-badge">
+          <view class="zan-badge__count">9</view>
+        </view>
+      </view>
+      <view class="demo__item">
+        <view class="demo__icon zan-badge">
+          <view class="zan-badge__count">19</view>
+        </view>
+      </view>
+      <view class="demo__item">
+        <view class="demo__icon zan-badge">
+          <view class="zan-badge__count">99+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Badge extends wepy.page {
+  config = {}
+  components = {}
+  data = {}
+  methods = {}
+  onLoad() { }
+}
+</script>
