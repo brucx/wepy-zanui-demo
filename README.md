@@ -2,7 +2,7 @@
 
 [ZanUI](https://github.com/youzan/zanui-weapp) 有赞移动 Web UI 规范 ZanUI 的小程序现实版本，结合了微信的视觉规范，为用户提供更加统一的使用感受。
 
-这里是 WeUI 在 WePY 中的移植。
+这里是 ZanUI 在 WePY 中的移植。
 
 ## 体验步骤
 
