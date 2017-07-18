@@ -53,7 +53,7 @@ export default class Switch extends wepy.page {
   }
   events = {
     zanSwitchChange({ componentId, checked }, event) {
-      console.log(componentId, checked, event)
+      // console.log(componentId, checked, event)
       if (componentId === 'sync') {
         // 同步开关
         this.sync_checked = checked

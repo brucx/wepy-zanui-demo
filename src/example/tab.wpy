@@ -102,7 +102,7 @@ export default class Tab extends wepy.page {
   }
   events = {
     zanTabChange({ componentId, selectedId }, event) {
-      console.log(componentId, selectedId, event)
+      // console.log(componentId, selectedId, event)
       this[componentId].selectedId = selectedId
       this.$apply()
     }

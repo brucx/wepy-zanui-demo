@@ -53,7 +53,7 @@ export default class Quantity extends wepy.page {
   }
   events = {
     zanQuantityChange({ componentId, quantity }, event) {
-      console.log(componentId, quantity, event)
+      // console.log(componentId, quantity, event)
       this[componentId] = quantity
       this.$apply()
     }
