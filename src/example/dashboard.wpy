@@ -83,5 +83,13 @@ export default class Dashboard extends wepy.page {
   }
 
   methods = {}
+
+  onLoad() {
+    wepy.getSystemInfo().then(data => {
+      if (data.SDKVersion < '1.4.0') {
+        wepy.showModal({ content: `SDKVersion最低要求1.4.0，当前版本${data.SDKVersion}`, title: '微信版本过低' })
+      }
+    })
+  }
 }
 </script>
