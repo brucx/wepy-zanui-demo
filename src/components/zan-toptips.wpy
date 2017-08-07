@@ -2,8 +2,7 @@
 .zan-toptips {
   display: block;
   position: fixed;
-  -webkit-transform: translateZ(0) translateY(-100%);
-  transform: translateZ(0) translateY(-100%);
+  transform: translateY(-100%);
   width: 100%;
   /* 至少有一行的高度，保证第一次动画显示正常 */
   min-height: 32px;
@@ -14,18 +13,11 @@
   color: #FFF;
   background-color: #E64340;
   z-index: 110;
-
-  /* 动画部分 */
-  transition: all 0.4s ease;
 }
 
-.zan-toptips--show {
-  -webkit-transform: translateZ(0) translateY(0);
-  transform: translateZ(0) translateY(0);
-}
 </style>
 <template>
-  <view class="zan-toptips {{ topTips.show ? 'zan-toptips--show' : '' }}"> {{ topTips.content }} </view>
+  <view animation="{{animationData}}" class="zan-toptips"> {{ topTips.content }} </view>
 </template>
 <script>
 import wepy from 'wepy'
@@ -33,7 +25,8 @@ import wepy from 'wepy'
 export default class zanToptips extends wepy.component {
   props = {}
   data = {
-    topTips: {}
+    topTips: {},
+    animationData: {}
   }
   methods = {
     showZanTopTips({ content = '', options = {} }, event) {
@@ -56,21 +49,39 @@ export default class zanToptips extends wepy.component {
         duration: 3000
       }, options)
 
+      // 原生动画
+      let animation = wepy.createAnimation({
+        duration: 400,
+        timingFunction: 'ease'
+      })
+      this.animation = animation
+
+      const toggle = () => {
+        wx.createSelectorQuery()
+          .select('.zan-toptips')
+          .boundingClientRect((rect) => {
+            this.topTips.show
+              ? animation.translateY().step()
+              : animation.translateY(-rect.height).step()
+            this.animationData = animation.export()
+            this.$apply()
+          }).exec()
+      }
+
       // 设置定时器，定时关闭topTips
       let timer = setTimeout(() => {
         this.topTips.show = false
         this.topTips.timer = undefined
-        this.$apply()
+        toggle()
       }, options.duration)
 
       // 展示出topTips
       this.topTips = {
         show: true,
         content,
-        options,
         timer
       }
-      this.$apply()
+      toggle()
     }
   }
 }

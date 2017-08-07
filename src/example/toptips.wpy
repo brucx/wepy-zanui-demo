@@ -12,9 +12,9 @@
         显示toptips
       </button>
     </view>
-  </view>
 
-  <zanToptips> </zanToptips>
+    <zanToptips/>
+  </view>
 </template>
 
 <script>
