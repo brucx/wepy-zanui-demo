@@ -15,7 +15,7 @@
   bottom: 0;
   width: 750rpx;
   background: white;
-  transform: translateY(150%);
+  transform: translateY(100%);
   z-index: 11;
 }
 
@@ -35,15 +35,16 @@
 import wepy from 'wepy'
 
 export default class zanDialog extends wepy.component {
-  props = {
-    content: String
-  }
+  props = {}
   data = {
     showDialog: false,
+    content: '',
     animationData: {}
   }
   methods = {
-    toggleDialog() {
+    toggleDialog({ content = '' }, event) {
+      console.log('showZanDialogs', content)
+      this.content = content
       this.showDialog = !this.showDialog
       let animation = wepy.createAnimation({
         duration: 400,

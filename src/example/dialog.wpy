@@ -12,7 +12,7 @@
         显示Dialog
       </button>
     </view>
-    <zanDialog content="Dialog内容 Wepy"/>
+    <zanDialog/>
   </view>
 </template>
 
@@ -28,7 +28,7 @@ export default class Dialog extends wepy.page {
   data = {}
   methods = {
     toggleDialog() {
-      this.$invoke('zanDialog', 'toggleDialog')
+      this.$invoke('zanDialog', 'toggleDialog', { content: 'Dialog内容 Wepy' })
     }
   }
   onLoad() {
