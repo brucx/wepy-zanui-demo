@@ -9,18 +9,16 @@
   background: rgba(0, 0, 0, 0.7);
   display: none;
 }
+
 .zan-dialog__container {
   position: fixed;
   bottom: 0;
   width: 750rpx;
   background: white;
   transform: translateY(150%);
-  transition: all 0.4s ease;
   z-index: 11;
 }
-.zan-dialog--show .zan-dialog__container {
-  transform: translateY(0);
-}
+
 .zan-dialog--show .zan-dialog__mask {
   display: block;
 }
@@ -28,7 +26,7 @@
 <template>
   <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
     <view class="zan-dialog__mask" bindtap="toggleDialog" />
-    <view class="zan-dialog__container">
+    <view animation="{{animationData}}" class="zan-dialog__container">
       <view style="padding: 100px 0; text-align: center;">{{content}}</view>
     </view>
   </view>
@@ -41,12 +39,26 @@ export default class zanDialog extends wepy.component {
     content: String
   }
   data = {
-    showDialog: false
+    showDialog: false,
+    animationData: {}
   }
   methods = {
     toggleDialog() {
       this.showDialog = !this.showDialog
-      this.$apply()
+      let animation = wepy.createAnimation({
+        duration: 400,
+        timingFunction: 'ease'
+      })
+      this.animation = animation
+      wx.createSelectorQuery()
+        .select('.zan-dialog__container')
+        .boundingClientRect((rect) => {
+          this.showDialog
+            ? animation.translateY().step()
+            : animation.translateY(rect.height).step()
+          this.animationData = animation.export()
+          this.$apply()
+        }).exec()
     }
   }
 }
