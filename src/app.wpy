@@ -44,6 +44,7 @@ export default class extends wepy.app {
       'example/label',
       'example/loadmore',
       'example/panel',
+      'example/popup',
       'example/tab',
       'example/quantity',
       'example/toptips',

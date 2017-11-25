@@ -1,0 +1,66 @@
+<style>
+/* zan-ui [release] 2.3.4 */
+.zan-popup {
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transition: .2s ease-out;
+}
+
+.zan-popup--top {
+  width: 100%;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.zan-popup--right {
+  transform: translate3d(50%, -50%, 0);
+}
+
+.zan-popup--left {
+  transform: translate3d(-150%, -50%, 0);
+}
+
+.zan-popup--show {
+  transform: translate3d(-50%, -50%, 0);
+}
+</style>
+
+<template>
+<view class="zan-popup zan-popup--{{direction}} {{ showPopup ? 'zan-popup--show' : ''}}">
+  <view style="padding: 15px;">
+    <slot></slot>
+  </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class zanPopup extends wepy.component {
+  data = {
+    showPopup: false,
+  }
+
+  props = {
+    // left or right
+    direction: {
+      type: String,
+      default: 'left',
+    },
+  }
+
+  methods = {
+    togglePopup() {
+      this.showPopup = !this.data.showPopup
+    },
+  }
+}
+</script>
