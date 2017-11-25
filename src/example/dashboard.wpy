@@ -61,6 +61,9 @@ export default class Dashboard extends wepy.page {
         name: 'Panel',
         path: '/example/panel'
       }, {
+        name: 'Popup',
+        path: '/example/popup'
+      }, {
         name: 'Quantity',
         path: '/example/quantity'
       }, {

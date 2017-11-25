@@ -1,0 +1,46 @@
+<template>
+<view class="container">
+
+  <view class="doc-title">POPUP</view>
+
+  <view class="zan-btns" style="margin-top: 30vh;">
+    <button class="zan-btn" bindtap="toggleLeftPopup">
+      从左边弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleRightPopup">
+      从右边弹出popup
+    </button>
+  </view>
+
+  <zanPopup1 direction="left">
+    <button @tap="toggleLeftPopup">关闭 popup</button>
+  </zanPopup1>
+
+  <zanPopup2 direction="right">
+    <button @tap="toggleRightPopup">关闭 popup</button>
+  </zanPopup2>
+
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanPopup from '../components/zan-popup'
+
+export default class Popup extends wepy.page {
+  components = {
+    zanPopup1: zanPopup,
+    zanPopup2: zanPopup,
+  }
+
+  methods = {
+    toggleLeftPopup() {
+      this.$invoke('zanPopup1', 'togglePopup')
+    },
+
+    toggleRightPopup() {
+      this.$invoke('zanPopup2', 'togglePopup')
+    },
+  }
+}
+</script>
