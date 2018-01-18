@@ -42,9 +42,10 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      'example/dashboard',
       // 'example/actionsheet',
       // 'example/btn',
-      // 'example/badge',
+      'example/badge',
       // 'example/capsule',
       // 'example/card',
       // 'example/cell',
@@ -64,8 +65,7 @@ export default class extends wepy.app {
       // 'example/tab',
       // 'example/tag',
       // 'example/toptips',
-      // 'example/toast',
-      'example/dashboard'
+      // 'example/toast'
     ],
     window: {
       navigationBarBackgroundColor: '#FAFAFA',

@@ -18,7 +18,7 @@
 <template>
   <view class="container">
 
-    <view class="doc-title">BADGE</view>
+    <view class="doc-title zan-hairline--bottom zan-hairline--bottom">BADGE</view>
 
     <view class="demo">
       <view class="demo__item">
@@ -47,10 +47,12 @@
 <script>
 import wepy from 'wepy'
 export default class Badge extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Badge 徽章'
+  }
   components = {}
   data = {}
   methods = {}
-  onLoad() { }
+  onLoad() {}
 }
 </script>

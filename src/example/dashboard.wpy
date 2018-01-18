@@ -35,75 +35,75 @@ export default class Dashboard extends wepy.page {
         content: [
           {
             name: 'Badge 徽章',
-            path: '/components/badge'
+            path: '/example/badge'
           },
           {
             name: 'Button 按钮',
-            path: '/components/btn'
+            path: '/example/btn'
           },
           {
             name: 'Capsule 胶囊',
-            path: '/components/capsule'
+            path: '/example/capsule'
           },
           {
             name: 'Card 卡片',
-            path: '/components/card'
+            path: '/example/card'
           },
           {
             name: 'Cell 单元格',
-            path: '/components/cell'
+            path: '/example/cell'
           },
           {
             name: 'Helper 基础样式',
-            path: '/components/helper'
+            path: '/example/helper'
           },
           {
             name: 'Icon 图标',
-            path: '/components/icon'
+            path: '/example/icon'
           },
           {
             name: 'Layout 布局',
-            path: '/components/layout'
+            path: '/example/layout'
           },
           {
             name: 'Loadmore 加载',
-            path: '/components/loadmore'
+            path: '/example/loadmore'
           },
           {
             name: 'Noticebar 通告栏',
-            path: '/components/noticebar'
+            path: '/example/noticebar'
           },
           {
             name: 'Panel 面板',
-            path: '/components/panel'
+            path: '/example/panel'
           },
           {
             name: 'Popup 弹出层',
-            path: '/components/popup'
+            path: '/example/popup'
           },
           {
             name: 'Select 选择',
-            path: '/components/select'
+            path: '/example/select'
           },
           {
             name: 'Stepper 计数器',
-            path: '/components/stepper'
+            path: '/example/stepper'
           },
           {
             name: 'Steps 步骤条',
-            path: '/components/steps'
+            path: '/example/steps'
           },
           {
             name: 'Switch 开关',
-            path: '/components/switch'
+            path: '/example/switch'
           },
           {
             name: 'Tab 标签',
-            path: '/components/tab'
+            path: '/example/tab'
           },
           {
             name: 'Tag 标记',
-            path: '/components/tag'
+            path: '/example/tag'
           }
         ]
       },
@@ -112,7 +112,7 @@ export default class Dashboard extends wepy.page {
         content: [
           {
             name: 'Field 输入框',
-            path: '/components/field'
+            path: '/example/field'
           }
         ]
       },
@@ -121,19 +121,19 @@ export default class Dashboard extends wepy.page {
         content: [
           {
             name: 'Actionsheet 行动按钮',
-            path: '/components/actionsheet'
+            path: '/example/actionsheet'
           },
           {
             name: 'Dialog 弹出框',
-            path: '/components/dialog'
+            path: '/example/dialog'
           },
           {
             name: 'Toast 轻提示',
-            path: '/components/toast'
+            path: '/example/toast'
           },
           {
             name: 'TopTips 顶部提示',
-            path: '/components/toptips'
+            path: '/example/toptips'
           }
         ]
       }
