@@ -1,5 +1,4 @@
 <style lang="css">
-@import "zanui/index.wxss";
 
 .container {
   background: #f9f9f9;

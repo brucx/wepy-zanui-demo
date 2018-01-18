@@ -1,4 +1,6 @@
-<style lang="less">
+<style lang="css">
+@import '/zanui/badge.wxss';
+
 .demo {
   padding: 40px 0;
   display: flex;
