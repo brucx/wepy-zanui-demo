@@ -19,7 +19,7 @@
     <zanNoticebar2 :text="shortText" componentId="static1" ></zanNoticebar2>
   </view>
 
-  <view class="zan-panel-title">静止通告栏2</view>
+  <view class="zan-panel-title">静止通告栏2（3秒后滚动）</view>
   <view class="zan-panel">
     <zanNoticebar3 :text="longText" componentId="static2" ></zanNoticebar3>
   </view>
@@ -48,11 +48,13 @@ export default class Noticebar extends wepy.page {
   onLoad() {}
   onReady() {
     // 滚动通告栏需要initScroll
-    this.$invoke('zanNoticebar1', 'initZanNoticeBarScroll', 'movable')
+    this.$invoke('zanNoticebar1', 'initZanNoticeBarScroll')
     // initScroll的通告栏如果宽度足够显示内容将保持静止
-    this.$invoke('zanNoticebar2', 'initZanNoticeBarScroll', 'static1')
+    this.$invoke('zanNoticebar2', 'initZanNoticeBarScroll')
     // 不进行initScroll的通告栏也将保持静止
-    // this.$invoke('zanNoticebar3', 'initZanNoticeBarScroll', 'static2')
+    setTimeout(() => {
+      this.$invoke('zanNoticebar3', 'initZanNoticeBarScroll')
+    }, 3000)
   }
 }
 </script>
