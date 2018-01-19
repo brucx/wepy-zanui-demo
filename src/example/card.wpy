@@ -1,6 +1,7 @@
 <style lang="css">
 @import '/zanui/panel.wxss';
 @import '/zanui/card.wxss';
+@import '/zanui/color.wxss';
 </style>
 
 <template>
