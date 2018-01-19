@@ -1,11 +1,18 @@
-<style lang="less">
-
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/cell.wxss';
+.my-class {
+  padding: 10px;
+}
+.my-class .zan-steps__step--done {
+  color: #f44;
+}
 </style>
 
 <template>
   <view class="container">
 
-    <view class="doc-title">STEPS</view>
+    <view class="doc-title zan-hairline--bottom">STEPS</view>
 
     <view class="zan-panel">
       <view class="zan-cell">
@@ -78,7 +85,9 @@ import wepy from 'wepy'
 import zanSteps from '../components/zan-steps'
 
 export default class Steps extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Steps 步骤条'
+  }
   components = {
     zanSteps1: zanSteps,
     zanSteps2: zanSteps,
@@ -88,7 +97,7 @@ export default class Steps extends wepy.page {
     zanSteps6: zanSteps,
     zanSteps7: zanSteps,
     zanSteps8: zanSteps,
-    zanSteps9: zanSteps,
+    zanSteps9: zanSteps
   }
   data = {
     _true: true,
@@ -152,9 +161,7 @@ export default class Steps extends wepy.page {
       }
     ]
   }
-  methods = {
-  }
-  onLoad() {
-  }
+  methods = {}
+  onLoad() {}
 }
 </script>

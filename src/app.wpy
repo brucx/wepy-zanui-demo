@@ -60,7 +60,7 @@ export default class extends wepy.app {
       // 'example/popup',
       // 'example/select',
       // 'example/stepper',
-      // 'example/steps',
+      'example/steps',
       'example/switch',
       // 'example/tab',
       'example/tag',
