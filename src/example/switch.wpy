@@ -1,4 +1,7 @@
-<style lang="less">
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/card.wxss';
+
 .zan-panel {
   padding: 10px;
 }
@@ -9,27 +12,27 @@
 </style>
 
 <template>
-  <view class="container">
+<view class="container">
 
-    <view class="doc-title">SWITCH</view>
+  <view class="doc-title zan-hairline--bottom">SWITCH</view>
 
-    <view class="zan-panel-title">同步开关</view>
-    <view class="zan-panel">
-      <syncSwitch :checked.sync="sync_checked" componentId="sync"> </syncSwitch>
-    </view>
-
-    <view class="zan-panel-title">异步开关</view>
-    <view class="zan-panel">
-      <asyncSwitch :checked.sync="async_checked" :loading.sync="async_loading" componentId="async"> </asyncSwitch>
-    </view>
-
-    <view class="zan-panel-title">开关不可用</view>
-    <view class="zan-panel">
-      <switch3 :checked="_false" :disabled="_true" componentId='switch3'> </switch3>
-      <switch4 :checked="_true" :disabled="_true" componentId='switch4'> </switch4>
-    </view>
-
+  <view class="zan-panel-title">同步开关</view>
+  <view class="zan-panel">
+    <syncSwitch :checked.sync="sync_checked" componentId="sync"> </syncSwitch>
   </view>
+
+  <view class="zan-panel-title">异步开关</view>
+  <view class="zan-panel">
+    <asyncSwitch :checked.sync="async_checked" :loading.sync="async_loading" componentId="async"> </asyncSwitch>
+  </view>
+
+  <view class="zan-panel-title">开关不可用</view>
+  <view class="zan-panel">
+    <switch3 :checked="_false" :disabled="_true" componentId='switch3'> </switch3>
+    <switch4 :checked="_true" :disabled="_true" componentId='switch4'> </switch4>
+  </view>
+
+</view>
 </template>
 
 <script>
@@ -37,12 +40,14 @@ import wepy from 'wepy'
 import zanSwitch from '../components/zan-switch'
 
 export default class Switch extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Switch 开关'
+  }
   components = {
     syncSwitch: zanSwitch,
     asyncSwitch: zanSwitch,
     switch3: zanSwitch,
-    switch4: zanSwitch,
+    switch4: zanSwitch
   }
   data = {
     sync_checked: false,
@@ -52,25 +57,25 @@ export default class Switch extends wepy.page {
     _false: false
   }
   events = {
-    zanSwitchChange({ componentId, checked }, event) {
-      // console.log(componentId, checked, event)
+    zanSwitchChange(event) {
+      console.log(event)
+      let { componentId, checked } = event.source
       if (componentId === 'sync') {
         // 同步开关
-        this.sync_checked = checked
+        this.sync_checked = !checked
         this.$apply()
       } else if (componentId === 'async') {
         // 异步开关
         this.async_loading = true
         setTimeout(() => {
           this.async_loading = false
-          this.async_checked = checked
+          this.async_checked = !checked
           this.$apply()
         }, 500)
       }
     }
   }
   methods = {}
-  onLoad() {
-  }
+  onLoad() {}
 }
 </script>

@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="scss">
 .zan-switch {
   position: relative;
   display: inline-block;
@@ -7,8 +7,8 @@
   vertical-align: middle;
   box-sizing: border-box;
   border-radius: 16px;
-  background: #44DB5E;
-  border: 1px solid #44DB5E;
+  background: #44db5e;
+  border: 1px solid #44db5e;
 }
 
 .zan-switch__circle {
@@ -21,7 +21,8 @@
   background: #fff;
   border-radius: 15px;
   box-sizing: border-box;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 3px 3px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 2px 0 rgba(0, 0, 0, 0.1),
+    0 3px 3px 0 rgba(0, 0, 0, 0.05);
   transition: transform 0.35s cubic-bezier(0.45, 1, 0.4, 1);
   z-index: 2;
 }
@@ -99,20 +100,19 @@ export default class zanSwitch extends wepy.component {
       type: Boolean,
       default: false
     },
-    componentId: String,
+    componentId: String
   }
   data = {}
   methods = {
     handleZanSwitchChange(e) {
       let dataset = e.currentTarget.dataset
-      let { loading, disabled, componentId } = dataset
-      let checked = !dataset.checked
+      let { checked, loading, disabled, componentId } = dataset
 
       if (loading || disabled) return
 
-      console.info('[zan:switch:change]', { checked, componentId })
+      console.info('[zan:switch:change]', { componentId, checked: !checked })
 
-      this.$emit('zanSwitchChange', { componentId, checked })
+      this.$emit('zanSwitchChange')
     }
   }
 }
