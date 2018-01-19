@@ -1,0 +1,157 @@
+<style lang="css">
+@import '/zanui/btn.wxss';
+@import '/zanui/popup.wxss';
+
+.popup-example--center {
+  border-radius: 4px;
+}
+
+.popup-example--right .zan-popup__container {
+  top: 0;
+  bottom: 0;
+}
+
+.popup-example--left .zan-popup__container {
+  top: 0;
+  bottom: 0;
+}
+
+.popup-example--top .zan-popup__container {
+  left: 0;
+  right: 0;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 16px;
+}
+.popup-example--top .zan-popup__mask {
+  opacity: 0;
+}
+
+.popup-example--bottom .zan-popup__container {
+  left: 0;
+  right: 0;
+}
+</style>
+
+<template>
+<view class="container">
+
+  <view class="doc-title zan-hairline--bottom">POPUP</view>
+
+  <view class="zan-btns" style="margin-top: 30vh;">
+    <button class="zan-btn" bindtap="togglePopup">
+      弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleTopPopup">
+      从顶部弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleBottomPopup">
+      从底部弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleLeftPopup">
+      从左边弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleRightPopup">
+      从右边弹出popup
+    </button>
+  </view>
+
+  <view class="zan-popup {{ showPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="togglePopup"></view>
+    <view class="zan-popup__container popup-example--center">
+      <view class="zan-btns">
+        <button class="zan-btn" bindtap="togglePopup">
+          关闭 popup
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="popup-example--left zan-popup zan-popup--left {{ showLeftPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" bindtap="toggleLeftPopup"></view>
+    <view class="zan-popup__container">
+      <view class="zan-btns">
+        <button class="zan-btn" catchtap="toggleLeftPopup">
+          关闭 popup
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="popup-example--right zan-popup zan-popup--right {{ showRightPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleRightPopup"></view>
+    <view class="zan-popup__container">
+      <view class="zan-btns">
+        <button class="zan-btn" catchtap="toggleRightPopup">
+          关闭 popup
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="popup-example--top zan-popup zan-popup--top {{ showTopPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleTopPopup"></view>
+    <view class="zan-popup__container">
+      内容
+    </view>
+  </view>
+
+  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showBottomPopup ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
+    <view class="zan-popup__container">
+      <view class="zan-btns">
+        <button class="zan-btn" catchtap="toggleBottomPopup">
+          关闭 popup
+        </button>
+      </view>
+    </view>
+  </view>
+
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Popup extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Popup 弹出层'
+  }
+  components = {}
+  data = {
+    showPopup: false,
+    showLeftPopup: false,
+    showRightPopup: false,
+    showTopPopup: false,
+    showBottomPopup: false
+  }
+  methods = {
+    togglePopup() {
+      this.showPopup = !this.showPopup
+      this.$apply()
+    },
+
+    toggleLeftPopup() {
+      this.showLeftPopup = !this.showLeftPopup
+      this.$apply()
+    },
+
+    toggleRightPopup() {
+      this.showRightPopup = !this.showRightPopup
+      this.$apply()
+    },
+
+    toggleBottomPopup() {
+      this.showBottomPopup = !this.showBottomPopup
+      this.$apply()
+    },
+
+    toggleTopPopup() {
+      this.showTopPopup = !this.showTopPopup
+      this.$apply()
+    }
+  }
+  onLoad() {}
+}
+</script>
