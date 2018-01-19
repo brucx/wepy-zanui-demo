@@ -54,7 +54,7 @@ export default class extends wepy.app {
       'example/helper',
       'example/icon',
       'example/layout',
-      // 'example/loadmore',
+      'example/loadmore',
       // 'example/noticebar',
       // 'example/panel',
       // 'example/popup',
