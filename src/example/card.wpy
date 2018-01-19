@@ -45,11 +45,12 @@
 import wepy from 'wepy'
 
 export default class Card extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Card 卡片'
+  }
   components = {}
   data = {}
   methods = {}
-  onLoad() {
-  }
+  onLoad() {}
 }
 </script>

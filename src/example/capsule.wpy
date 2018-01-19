@@ -34,7 +34,7 @@
 import wepy from 'wepy'
 import zanCapsule from '../components/zan-capsule'
 
-export default class Badge extends wepy.page {
+export default class Capsule extends wepy.page {
   config = {
     navigationBarTitleText: 'Capsule 胶囊'
   }

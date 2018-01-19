@@ -1,4 +1,5 @@
 <style lang="css">
+@import '/zanui/panel.wxss';
 @import '/zanui/btn.wxss';
 </style>
 

@@ -48,7 +48,7 @@ export default class extends wepy.app {
       'example/badge',
       'example/capsule',
       'example/card',
-      // 'example/cell',
+      'example/cell',
       // 'example/dialog',
       // 'example/field',
       // 'example/helper',
