@@ -62,7 +62,7 @@ export default class extends wepy.app {
       'example/stepper',
       'example/steps',
       'example/switch',
-      // 'example/tab',
+      'example/tab',
       'example/tag',
       // 'example/toptips',
       // 'example/toast'
