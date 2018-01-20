@@ -1,37 +1,5 @@
 <style lang="css">
 @import '/zanui/btn.wxss';
-@import '/zanui/popup.wxss';
-
-.popup-example--center {
-  border-radius: 4px;
-}
-
-.popup-example--right .zan-popup__container {
-  top: 0;
-  bottom: 0;
-}
-
-.popup-example--left .zan-popup__container {
-  top: 0;
-  bottom: 0;
-}
-
-.popup-example--top .zan-popup__container {
-  left: 0;
-  right: 0;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  font-size: 16px;
-}
-.popup-example--top .zan-popup__mask {
-  opacity: 0;
-}
-
-.popup-example--bottom .zan-popup__container {
-  left: 0;
-  right: 0;
-}
 </style>
 
 <template>
@@ -57,99 +25,81 @@
     </button>
   </view>
 
-  <view class="zan-popup {{ showPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" bindtap="togglePopup"></view>
-    <view class="zan-popup__container popup-example--center">
-      <view class="zan-btns">
-        <button class="zan-btn" bindtap="togglePopup">
-          关闭 popup
-        </button>
-      </view>
+  <zanPopup1>
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="togglePopup">
+        关闭 popup
+      </button>
     </view>
-  </view>
+  </zanPopup1>
 
-  <view class="popup-example--left zan-popup zan-popup--left {{ showLeftPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" bindtap="toggleLeftPopup"></view>
-    <view class="zan-popup__container">
-      <view class="zan-btns">
-        <button class="zan-btn" catchtap="toggleLeftPopup">
-          关闭 popup
-        </button>
-      </view>
+  <zanPopup2 direction="left">
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="toggleLeftPopup">
+        关闭 popup
+      </button>
     </view>
-  </view>
+  </zanPopup2>
 
-  <view class="popup-example--right zan-popup zan-popup--right {{ showRightPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" catchtap="toggleRightPopup"></view>
-    <view class="zan-popup__container">
-      <view class="zan-btns">
-        <button class="zan-btn" catchtap="toggleRightPopup">
-          关闭 popup
-        </button>
-      </view>
-    </view>
-  </view>
 
-  <view class="popup-example--top zan-popup zan-popup--top {{ showTopPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" catchtap="toggleTopPopup"></view>
-    <view class="zan-popup__container">
-      内容
+  <zanPopup3 direction="right">
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="toggleRightPopup">
+        关闭 popup
+      </button>
     </view>
-  </view>
+  </zanPopup3>
 
-  <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showBottomPopup ? 'zan-popup--show' : ''}}">
-    <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
-    <view class="zan-popup__container">
-      <view class="zan-btns">
-        <button class="zan-btn" catchtap="toggleBottomPopup">
-          关闭 popup
-        </button>
-      </view>
+  <zanPopup4 direction="top">
+    内容
+  </zanPopup4>
+
+  <zanPopup5 direction="bottom">
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="toggleBottomPopup">
+        关闭 popup
+      </button>
     </view>
-  </view>
+  </zanPopup5>
 
 </view>
 </template>
 
 <script>
 import wepy from 'wepy'
+import zanPopup from '../components/zan-popup'
 
 export default class Popup extends wepy.page {
   config = {
     navigationBarTitleText: 'Popup 弹出层'
   }
-  components = {}
-  data = {
-    showPopup: false,
-    showLeftPopup: false,
-    showRightPopup: false,
-    showTopPopup: false,
-    showBottomPopup: false
+  components = {
+    zanPopup1: zanPopup,
+    zanPopup2: zanPopup,
+    zanPopup3: zanPopup,
+    zanPopup4: zanPopup,
+    zanPopup5: zanPopup
   }
+  data = {}
   methods = {
     togglePopup() {
-      this.showPopup = !this.showPopup
-      this.$apply()
+      this.$invoke('zanPopup1', 'togglePopup')
     },
 
     toggleLeftPopup() {
-      this.showLeftPopup = !this.showLeftPopup
-      this.$apply()
+      this.$invoke('zanPopup2', 'togglePopup')
     },
 
     toggleRightPopup() {
-      this.showRightPopup = !this.showRightPopup
-      this.$apply()
-    },
-
-    toggleBottomPopup() {
-      this.showBottomPopup = !this.showBottomPopup
-      this.$apply()
+      this.$invoke('zanPopup3', 'togglePopup')
     },
 
     toggleTopPopup() {
-      this.showTopPopup = !this.showTopPopup
-      this.$apply()
+      this.$invoke('zanPopup4', 'togglePopup')
+    },
+
+    toggleBottomPopup() {
+      this.$invoke('zanPopup5', 'togglePopup')
     }
   }
   onLoad() {}
