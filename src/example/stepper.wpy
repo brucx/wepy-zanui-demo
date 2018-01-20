@@ -1,0 +1,66 @@
+<style lang="less">
+.zan-panel {
+  padding: 10px;
+}
+
+.zan-switch {
+  margin-right: 8px;
+}
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title">QUANTITY</view>
+
+    <view style="padding: 40px 15px">
+      <zanStepper1 :stepper.sync="stepper1" :min="min1" :max="max1" componentId="stepper1"> </zanStepper1>
+    </view>
+
+    <!-- 当最大值等于最小值时，组件不可用 -->
+    <view style="padding: 40px 15px ">
+      <zanStepper2 :stepper.sync="stepper2" :min="min2" :max="max2" componentId="stepper2"> </zanStepper2>
+    </view>
+
+    <!-- small size -->
+    <view style="padding: 40px 15px ">
+      <zanStepper3 :stepper.sync="stepper3" :min="min3" :max="max3" componentId="stepper3" size="small"> </zanStepper3>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanStepper from '../components/zan-stepper'
+
+export default class Stepper extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Stepper 计数器'
+  }
+  components = {
+    zanStepper1: zanStepper,
+    zanStepper2: zanStepper,
+    zanStepper3: zanStepper
+  }
+  data = {
+    stepper1: 10,
+    min1: 1,
+    max1: 20,
+    stepper2: 1,
+    min2: 1,
+    max2: 1,
+    stepper3: 10,
+    min3: 1,
+    max3: 20
+  }
+  events = {
+    zanStepperChange({ componentId, stepper }, event) {
+      // console.log(componentId, stepper, event)
+      this[componentId] = stepper
+      this.$apply()
+    }
+  }
+  methods = {}
+  onLoad() {}
+}
+</script>
