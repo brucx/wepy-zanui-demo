@@ -64,7 +64,7 @@ export default class extends wepy.app {
       'example/switch',
       'example/tab',
       'example/tag',
-      // 'example/toptips',
+      'example/toptips',
       // 'example/toast'
     ],
     window: {

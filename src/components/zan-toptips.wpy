@@ -1,20 +1,18 @@
-<style lang="less">
+<style lang="scss">
 .zan-toptips {
   display: block;
   position: fixed;
   transform: translateY(-100%);
   width: 100%;
-  /* 至少有一行的高度，保证第一次动画显示正常 */
-  min-height: 32px;
+  min-height: 32px; /* 至少有一行的高度，保证第一次动画显示正常 */
   top: 0;
   line-height: 2.3;
   font-size: 14px;
   text-align: center;
-  color: #FFF;
-  background-color: #E64340;
+  color: #fff;
+  background-color: #e64340;
   z-index: 110;
 }
-
 </style>
 <template>
   <view animation="{{animationData}}" class="zan-toptips"> {{ topTips.content }} </view>
@@ -45,9 +43,12 @@ export default class zanToptips extends wepy.component {
       }
 
       // options参数默认参数扩展
-      options = Object.assign({
-        duration: 3000
-      }, options)
+      options = Object.assign(
+        {
+          duration: 3000
+        },
+        options
+      )
 
       // 原生动画
       let animation = wepy.createAnimation({
@@ -57,15 +58,15 @@ export default class zanToptips extends wepy.component {
       this.animation = animation
 
       const toggle = () => {
-        wx.createSelectorQuery()
+        wx
+          .createSelectorQuery()
           .select('.zan-toptips')
-          .boundingClientRect((rect) => {
-            this.topTips.show
-              ? animation.translateY().step()
-              : animation.translateY(-rect.height).step()
+          .boundingClientRect(rect => {
+            this.topTips.show ? animation.translateY().step() : animation.translateY(-rect.height).step()
             this.animationData = animation.export()
             this.$apply()
-          }).exec()
+          })
+          .exec()
       }
 
       // 设置定时器，定时关闭topTips
