@@ -1,0 +1,57 @@
+<style lang="scss">
+@import '../zanui/cell.scss';
+.zan-select__list .zan-select__radio {
+  display: none;
+}
+</style>
+<template>
+<block>
+  <radio-group
+    class="zan-select__list"
+    name="{{ name || componentId || '' }}"
+    bindchange="handleZanSelectChange"
+    data-component-id="{{ componentId }}"
+  >
+    <label wx:for="{{ items }}" wx:key="value">
+      <view class="zan-cell">
+        <radio class="zan-select__radio" value="{{ item.value }}" checked="{{ item.value === checkedValue }}"/>
+        <view
+          class="zan-cell__bd"
+          style="{{ 'padding-left: ' + item.padding * 10 + 'px;' + ' color: ' + activeColor }}"
+        >{{ item.name }}</view>
+        <view wx:if="{{ item.value === checkedValue }}" class="zan-cell__ft">
+          <icon type="success_no_circle" color="{{ activeColor }}" size="14"></icon>
+        </view>
+      </view>
+    </label>
+  </radio-group>
+</block>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class zanSwitch extends wepy.component {
+  props = {
+    items: Object,
+    name: {
+      type: String,
+      default: ''
+    },
+    activeColor: {
+      type: String,
+      default: '#ff4444'
+    },
+    checkedValue: Number,
+    componentId: String
+  }
+  data = {}
+  methods = {
+    handleZanSelectChange(e) {
+      let value = e.detail.value
+      console.info('[zan:Select:change]', value, e)
+      this.$emit('zanSelectChange', value)
+    }
+  }
+  computed = {}
+}
+</script>

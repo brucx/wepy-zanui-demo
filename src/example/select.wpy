@@ -1,0 +1,95 @@
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/btn.wxss';
+</style>
+
+<template>
+<block>
+  <view class="container">
+
+    <view class="doc-title zan-hairline--bottom">SELECT</view>
+
+    <view class="zan-panel-title">基础用法</view>
+    <view class="zan-panel">
+      <view>
+        <zanSelect1 :items="items" :checkedValue.sync="checked_base" componentId="base" ></zanSelect1>
+      </view>
+    </view>
+
+    <view class="zan-panel-title">自定义高亮颜色</view>
+    <view class="zan-panel">
+      <view>
+        <zanSelect2 :items="items" :checkedValue.sync="checked_color" :activeColor="activeColor" componentId="color" ></zanSelect2>
+      </view>
+    </view>
+
+    <view class="zan-panel-title">Form 表单中的select应用</view>
+    <form bindsubmit="formSubmit">
+      <view class="zan-panel">
+        <view>
+          <zanSelect3 :items="items" :checkedValue.sync="checked_form" name="formtest" componentId="form"></zanSelect3>
+        </view>
+      </view>
+
+      <view class="zan-btns">
+        <button
+          class="zan-btn zan-btn--primary"
+          formType="submit">提交数据</button>
+      </view>
+    </form>
+  </view>
+  <zanToptips />
+</block>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanSelect from '../components/zan-select'
+import zanToptips from '../components/zan-toptips'
+
+export default class Select extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Select 选择'
+  }
+  components = {
+    zanSelect1: zanSelect,
+    zanSelect2: zanSelect,
+    zanSelect3: zanSelect,
+    zanToptips
+  }
+  data = {
+    items: [
+      {
+        padding: 0,
+        value: '1',
+        name: '选项一'
+      },
+      {
+        padding: 0,
+        value: '2',
+        name: '选项二'
+      }
+    ],
+
+    checked_base: -1,
+    checked_color: -1,
+    checked_form: -1,
+
+    activeColor: '#4b0'
+  }
+  events = {
+    zanSelectChange(value, event) {
+      let { componentId } = event.source
+      this[`checked_${componentId}`] = value
+      this.$apply()
+    }
+  }
+  methods = {
+    formSubmit(event) {
+      console.log('[zan:field:submit]', event.detail.value)
+      this.$invoke('zanToptips', 'showZanTopTips', { content: `选中的值为${event.detail.value.formtest}` })
+    }
+  }
+  onLoad() {}
+}
+</script>
