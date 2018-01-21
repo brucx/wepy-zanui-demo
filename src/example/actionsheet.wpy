@@ -1,0 +1,91 @@
+<style lang="css">
+@import '/zanui/btn.wxss';
+</style>
+
+<template>
+<block>
+<view class="container">
+
+  <view class="doc-title zan-hairline--bottom zan-hairline--bottom">ACTIONSHEET</view>
+
+  <view class="zan-btns" style="margin-top: 30vh;">
+    <button class="zan-btn" bindtap="toggleActionsheet">
+      Actionsheet
+    </button>
+  </view>
+
+</view>
+
+<zanActionsheet componentId="baseActionsheet"/>
+<zanToptips/>
+
+</block>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanActionsheet from '../components/zan-actionsheet'
+import zanToptips from '../components/zan-toptips'
+
+export default class Actionsheet extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Actionsheet 行动按钮'
+  }
+  components = {
+    zanActionsheet,
+    zanToptips
+  }
+  data = {}
+  events = {
+    zanSelectChange(value, event) {
+      let { componentId } = event.source
+      this[`checked_${componentId}`] = value
+      this.$apply()
+    }
+  }
+  methods = {
+    toggleActionsheet() {
+      this.$invoke('zanActionsheet', 'showZanActionsheet', {
+        show: false,
+        cancelText: '关闭 Action',
+        closeOnClickOverlay: true,
+        actions: [
+          {
+            type: 'first',
+            name: '选项1',
+            subname: '选项描述语1',
+            className: 'action-class',
+            loading: false,
+            asyncJob: function() {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  resolve()
+                }, 1500)
+              })
+            }
+          },
+          {
+            type: 'second',
+            name: '选项2',
+            subname: '选项描述语2',
+            className: 'action-class',
+            loading: false
+          },
+          {
+            type: 'share',
+            name: '去分享',
+            openType: 'share'
+          }
+        ]
+      })
+        .then(result => {
+          this.$invoke('zanToptips', 'showZanTopTips', { content: result.type, options: 1000 })
+        })
+        .catch(e => {
+          this.$invoke('zanToptips', 'showZanTopTips', { content: '行动取消', options: 1000 })
+        })
+    }
+  }
+  onLoad() {}
+}
+</script>

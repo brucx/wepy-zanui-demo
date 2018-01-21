@@ -43,7 +43,7 @@ export default class extends wepy.app {
   config = {
     pages: [
       'example/dashboard',
-      // 'example/actionsheet',
+      'example/actionsheet',
       'example/btn',
       'example/badge',
       'example/capsule',
