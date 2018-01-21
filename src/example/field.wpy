@@ -1,0 +1,251 @@
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/btn.wxss';
+.field__title--radius {
+  padding-bottom: 10px;
+}
+</style>
+
+<template>
+<view class="container">
+  <view class="doc-title zan-hairline--bottom">Field</view>
+
+  <!-- Field 基础用法 -->
+  <view class="zan-panel-title">基础用法</view>
+  <view class="zan-panel">
+    <zanField1 :options="base_name" :value="value" componentId="zanField1"></zanField1>
+    <zanField2 :options="base_tel" :value="value" componentId="zanField2"></zanField2>
+    <zanField3 :options="base_address" :value="value" componentId="zanField3"></zanField3>
+  </view>
+
+  <view class="zan-btns">
+    <button
+      class="zan-btn zan-btn--primary"
+      bindtap="clearInput">清除输入</button>
+  </view>
+
+  <!-- 去除标题后的输入框样式 -->
+  <view class="zan-panel-title">无标题输入框</view>
+  <view class="zan-panel">
+    <zanField4 :options="notitle" :value="textareaValue" componentId="zanField4"></zanField4>
+  </view>
+
+  <view class="zan-btns">
+    <button
+      class="zan-btn zan-btn--primary"
+      bindtap="clearTextarea">清除输入</button>
+  </view>
+
+  <!-- 使用 Field 圆角样式 -->
+  <view class="zan-panel-title field__title--radius">圆角输入框</view>
+  <zanField5 :options="radius_totalPrice" componentId="zanField5"></zanField5>
+  <zanField6 :options="radius_excludePrice" componentId="zanField6"></zanField6>
+  <zanField7 :options="radius_notitle" componentId="zanField7"></zanField7>
+
+  <!-- form 中使用 Field -->
+  <view class="zan-panel-title">Form 表单中的field应用</view>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="zan-panel">
+      <zanField8 :options="form_name" componentId="zanField8"></zanField8>
+      <zanField9 :options="form_tel" componentId="zanField9"></zanField9>
+      <view class="zan-btns">
+        <button
+          class="zan-btn zan-btn--primary"
+          formType="submit">提交数据</button>
+        <button
+          class="zan-btn"
+          formType="reset">重置数据</button>
+      </view>
+    </view>
+  </form>
+
+  <view class="zan-panel-title">自定义显示内容</view>
+  <view class="zan-panel">
+    <view class="zan-cell zan-field">
+      <view class="zan-cell__hd zan-field__title">选择区域</view>
+      <picker
+        mode="selector"
+        class="zan-field__input zan-cell__bd"
+        range="{{ area }}"
+        value="{{ areaIndex }}"
+        bindchange="onAreaChange"
+      >
+        {{ area[areaIndex] }}
+      </picker>
+    </view>
+
+    <view class="zan-cell zan-field">
+      <view class="zan-cell__hd zan-field__title">验证码</view>
+      <input
+        type="text"
+        placeholder="请输入短信验证码"
+        class="zan-field__input zan-cell__bd"/>
+      <view class="zan-cell__ft">
+        <button class="zan-btn zan-btn--mini zan-btn--primary">获取验证码</button>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanField from '../components/zan-field'
+
+export default class field extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Field 输入框'
+  }
+  components = {
+    zanField1: zanField,
+    zanField2: zanField,
+    zanField3: zanField,
+    zanField4: zanField,
+    zanField5: zanField,
+    zanField6: zanField,
+    zanField7: zanField,
+    zanField8: zanField,
+    zanField9: zanField,
+  }
+  data = {
+    // 基础类型输入框配置
+    base_name: {
+      title: '收货人',
+      placeholder: '名字'
+    },
+    base_tel: {
+      error: true,
+      title: '联系电话',
+      inputType: 'number',
+      placeholder: '请输入手机号'
+    },
+    base_address: {
+      title: '详细地址',
+      type: 'textarea',
+      placeholder: '请输入详细地址'
+    },
+    // 无标题输入框
+    notitle: {
+      placeholder: '请输入收货人姓名',
+      componentId: 'textarea:test'
+    },
+    // 圆角输入框
+    radius_totalPrice: {
+      right: true,
+      mode: 'wrapped',
+      title: '消费总额',
+      inputType: 'number',
+      placeholder: '询问收银员后输入'
+    },
+    radius_excludePrice: {
+      right: true,
+      error: true,
+      mode: 'wrapped',
+      title: '不参与优惠金额',
+      inputType: 'number',
+      placeholder: '询问收银员后输入'
+    },
+    radius_notitle: {
+      mode: 'wrapped',
+      inputType: 'number',
+      placeholder: '请输入消费金额'
+    },
+    // Form 中使用输入框
+    form_name: {
+      name: 'name',
+      placeholder: '请输入收货人姓名',
+      componentId: 'form:test:name'
+    },
+    form_tel: {
+      name: 'tel',
+      inputType: 'tel',
+      placeholder: '请输入收货人手机号码',
+      componentId: 'form:test:tel'
+    },
+    value: 'test',
+    textareaValue: 'test textarea',
+    area: [
+      '省份',
+      '北京市',
+      '天津市',
+      '河北省',
+      '山西省',
+      '内蒙古自治区',
+      '辽宁省',
+      '吉林省',
+      '黑龙江省',
+      '上海市',
+      '江苏省',
+      '浙江省',
+      '安徽省',
+      '福建省',
+      '江西省',
+      '山东省',
+      '河南省',
+      '湖北省',
+      '湖南省',
+      '广东省',
+      '广西壮族自治区',
+      '海南省',
+      '重庆市',
+      '四川省',
+      '贵州省',
+      '云南省',
+      '西藏自治区',
+      '陕西省',
+      '甘肃省',
+      '青海省',
+      '宁夏回族自治区',
+      '新疆维吾尔自治区',
+      '台湾省',
+      '香港特别行政区',
+      '澳门特别行政区'
+    ],
+    areaIndex: 0
+  }
+  methods = {
+    onAreaChange(e) {
+      this.areaIndex = e.detail.value
+      this.$apply()
+    },
+
+    clearInput() {
+      this.$invoke('zanField1', 'clear')
+      this.$invoke('zanField2', 'clear')
+      this.$invoke('zanField3', 'clear')
+    },
+
+    clearTextarea() {
+      this.$invoke('zanField4', 'clear')
+    },
+
+    formSubmit(event) {
+      console.log('[zan:field:submit]', event.detail.value)
+    },
+
+    formReset(event) {
+      console.log('[zan:field:reset]', event)
+    }
+  }
+  events = {
+    zanFieldChange(e) {
+      const { componentId, detail } = e
+
+      console.log('[zan:field:change]', componentId, detail)
+    },
+
+    zanFieldFocus(e) {
+      const { componentId, detail } = e
+
+      console.log('[zan:field:focus]', componentId, detail)
+    },
+
+    zanFieldBlur(e) {
+      const { componentId, detail } = e
+
+      console.log('[zan:field:blur]', componentId, detail)
+    }
+  }
+  onLoad() {}
+}
+</script>
