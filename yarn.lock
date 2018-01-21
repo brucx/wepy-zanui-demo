@@ -3734,7 +3734,7 @@ wepy-async-function@^1.4.4:
     promise-polyfill "^6.0.2"
     regenerator-runtime "^0.10.3"
 
-wepy-com-toast@^1.0.1:
+wepy-com-toast@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/wepy-com-toast/-/wepy-com-toast-1.0.3.tgz#94e124b0a1ad4c55718a4135d00420f28c28ded7"
 
@@ -3756,9 +3756,9 @@ wepy-compiler-sass@0.0.3:
   dependencies:
     node-sass "^4.0.0"
 
-wepy-eslint@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/wepy-eslint/-/wepy-eslint-1.5.2.tgz#6ef4225e08c1d9457c9cfcb1631d086992c5466b"
+wepy-eslint@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/wepy-eslint/-/wepy-eslint-1.5.3.tgz#48bd89309611152f1b83747484f4a6494a48b414"
 
 wepy-plugin-imagemin@^1.5.2:
   version "1.5.2"
@@ -3774,9 +3774,9 @@ wepy-plugin-uglifyjs@^1.3.6:
   dependencies:
     uglify-js "^2.7.5"
 
-wepy@^1.5.1:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/wepy/-/wepy-1.5.5.tgz#fee95a448b59f457b1ca192d38228acae7254c89"
+wepy@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/wepy/-/wepy-1.6.0.tgz#682bcd91dd2d1b4c4696c5e58447d960e7ea96f4"
 
 which-module@^1.0.0:
   version "1.0.0"

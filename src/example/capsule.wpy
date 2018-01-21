@@ -1,0 +1,50 @@
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/cell.wxss';
+
+.zan-capsule + .zan-capsule {
+  margin-left: 10px;
+}
+</style>
+
+<template>
+  <view class="container">
+
+    <view class="doc-title zan-hairline--bottom">CAPSULE</view>
+
+    <view class="zan-panel-title">基本用法</view>
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell--last-child">
+        <zanCapsule1 leftText="1折" rightText="限购一份" />
+        <zanCapsule2 leftText="2折" rightText="限购两份" type="danger" />
+      </view>
+    </view>
+
+    <view class="zan-panel-title">自定义颜色</view>
+    <view class="zan-panel">
+      <view class="zan-cell zan-cell--last-child">
+        <zanCapsule3 leftText="3折" rightText="限购三份" color="#38f" />
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanCapsule from '../components/zan-capsule'
+
+export default class Capsule extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Capsule 胶囊'
+  }
+  components = {
+    zanCapsule1: zanCapsule,
+    zanCapsule2: zanCapsule,
+    zanCapsule3: zanCapsule,
+  }
+  data = {}
+  methods = {}
+  onLoad() {}
+}
+</script>

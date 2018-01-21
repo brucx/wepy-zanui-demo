@@ -18,8 +18,8 @@
 }
 </style>
 <template>
-  <view class="zan-toast" wx:if="{{ toast.show }}" @tap="clearZanToast">
-    {{ toast.title }}</view>
+  <view class="zan-toast" wx:if="{{ zanToast.show }}" @tap="clearZanToast">
+    {{ zanToast.title }}</view>
 </template>
 <script>
 import wepy from 'wepy'
@@ -27,15 +27,15 @@ import wepy from 'wepy'
 export default class zanToast extends wepy.component {
   props = {}
   data = {
-    toast: {}
+    zanToast: {}
   }
   methods = {
     showZanToast({title, timeout}) {
-      var toast = this.toast || {}
-      clearTimeout(toast.timer)
+      var zanToast = this.zanToast || {}
+      clearTimeout(zanToast.timer)
 
       // 弹层设置~
-      this.toast = {
+      this.zanToast = {
         show: true,
         title
       }
@@ -45,14 +45,14 @@ export default class zanToast extends wepy.component {
         this.methods.clearZanToast.call(this)
       }, timeout || 3000)
 
-      this.toast.timer = timer
+      this.zanToast.timer = timer
       this.$apply()
     },
     clearZanToast() {
-      var toast = this.toast || {}
-      clearTimeout(toast.timer)
+      var zanToast = this.zanToast || {}
+      clearTimeout(zanToast.timer)
 
-      this.toast.show = false
+      this.zanToast.show = false
       this.$apply()
     }
   }

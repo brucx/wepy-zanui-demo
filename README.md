@@ -9,7 +9,7 @@
 ### 1. 安装 wepy
 本项目基于wepy开发，[参考这里](https://github.com/wepyjs/wepy)
 ```bash
-npm install wepy-cli -g
+yarn global add wepy-cli
 ```
 
 ### 2. 下载源代码
@@ -19,7 +19,8 @@ git clone https://github.com/brucx/wepy-zanui-demo.git
 
 ### 3. 安装开发依赖
 ```bash
-npm install
+cd wepy-zanui-demo
+yarn
 ```
 
 ### 4. 编译源代码

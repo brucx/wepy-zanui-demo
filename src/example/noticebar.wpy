@@ -1,0 +1,60 @@
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/cell.wxss';
+
+</style>
+
+<template>
+<view class="container">
+
+  <view class="doc-title zan-hairline--bottom">NOTICEBAR</view>
+
+  <view class="zan-panel-title">滚动通告栏</view>
+  <view class="zan-panel">
+    <zanNoticebar1 :text="longText" componentId="movable" ></zanNoticebar1>
+  </view>
+
+  <view class="zan-panel-title">静止通告栏1</view>
+  <view class="zan-panel">
+    <zanNoticebar2 :text="shortText" componentId="static1" ></zanNoticebar2>
+  </view>
+
+  <view class="zan-panel-title">静止通告栏2（3秒后滚动）</view>
+  <view class="zan-panel">
+    <zanNoticebar3 :text="longText" componentId="static2" ></zanNoticebar3>
+  </view>
+
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanNoticebar from '../components/zan-noticebar'
+
+export default class Noticebar extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Noticebar 通告栏'
+  }
+  components = {
+    zanNoticebar1: zanNoticebar,
+    zanNoticebar2: zanNoticebar,
+    zanNoticebar3: zanNoticebar
+  }
+  data = {
+    longText: '足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。',
+    shortText: '足协杯战线连续第2年上演广州德比战'
+  }
+  methods = {}
+  onLoad() {}
+  onReady() {
+    // 滚动通告栏需要initScroll
+    this.$invoke('zanNoticebar1', 'initZanNoticeBarScroll')
+    // initScroll的通告栏如果宽度足够显示内容将保持静止
+    this.$invoke('zanNoticebar2', 'initZanNoticeBarScroll')
+    // 不进行initScroll的通告栏也将保持静止
+    setTimeout(() => {
+      this.$invoke('zanNoticebar3', 'initZanNoticeBarScroll')
+    }, 3000)
+  }
+}
+</script>

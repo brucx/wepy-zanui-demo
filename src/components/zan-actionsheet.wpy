@@ -1,0 +1,235 @@
+<style lang="scss">
+@import '../zanui/btn.scss';
+@import '../zanui/common';
+
+.zan-actionsheet {
+  background-color: #f8f8f8;
+}
+
+.zan-actionsheet__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+
+.zan-actionsheet__container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $background-color;
+  transform: translate3d(0, 50%, 0);
+  transform-origin: center;
+  transition: all 0.2s ease;
+  z-index: 11;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.zan-actionsheet__btn.zan-btn {
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 0;
+
+  &::after {
+    border-width: 0;
+    border-bottom-width: 1px;
+  }
+}
+
+.zan-actionsheet__btn.zan-btn:last-child {
+  &::after {
+    border-bottom-width: 0;
+  }
+}
+
+.zan-actionsheet__subname {
+  margin-left: 2px;
+  font-size: 12px;
+  color: $gray-darker;
+}
+
+.zan-actionsheet__footer {
+  margin-top: 10px;
+}
+
+/* btn-loading 状态 */
+.zan-actionsheet__btn.zan-btn--loading .zan-actionsheet__subname {
+  color: transparent;
+}
+
+/* zan-actionsheet 展示出来的样式 */
+.zan-actionsheet--show .zan-actionsheet__container {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+.zan-actionsheet--show .zan-actionsheet__mask {
+  display: block;
+}
+</style>
+<template>
+  <view class="zan-actionsheet {{ zanActionsheet.show ? 'zan-actionsheet--show' : '' }}">
+    <view
+      class="zan-actionsheet__mask"
+      catchtap="handleZanActionsheetMaskClick"
+      data-close-on-click-overlay="{{ zanActionsheet.closeOnClickOverlay }}"
+      data-component-id="{{ componentId }}"></view>
+    <view class="zan-actionsheet__container">
+      <!-- 实际按钮显示 -->
+      <button
+        wx:for="{{ zanActionsheet.actions }}"
+        wx:for-index="index"
+        wx:for-item="item"
+        wx:key="{{ index }}-{{ item.name }}"
+        catchtap="handleZanActionsheetBtnClick"
+        data-component-id="{{ componentId }}"
+        data-index="{{ index }}"
+        data-type="{{ item.type }}"
+        open-type="{{ item.openType }}"
+        class="zan-btn zan-actionsheet__btn {{ item.loading ? 'zan-btn--loading' : '' }} {{ item.className }}"
+      >
+        <text>{{ item.name }}</text>
+        <text
+          wx:if="{{ item.subname }}"
+          class="zan-actionsheet__subname">{{ item.subname }}</text>
+      </button>
+
+      <!-- 关闭按钮 -->
+      <view
+        wx:if="{{ zanActionsheet.cancelText }}"
+        class="zan-actionsheet__footer"
+      >
+        <button
+          class="zan-btn zan-actionsheet__btn"
+          catchtap="handleZanActionsheetCancelBtnClick"
+          data-component-id="{{ componentId }}"
+        >{{ zanActionsheet.cancelText }}</button>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class zanActionsheet extends wepy.component {
+  props = {
+    componentId: String
+  }
+  data = {
+    zanActionsheet: {}
+  }
+  methods = {
+    showZanActionsheet(options = {}, e) {
+      const {
+        cancelText = '关闭 Action',
+        closeOnClickOverlay = true,
+        actions = [
+          {
+            type: '1',
+            name: '选项1',
+            subname: '选项描述语1',
+            className: 'action-class',
+            loading: false
+          },
+          {
+            type: '2',
+            name: '选项2',
+            subname: '选项描述语2',
+            className: 'action-class',
+            loading: false
+          },
+          {
+            type: 'share',
+            name: '去分享',
+            openType: 'share'
+          }
+        ]
+      } = options
+      return new Promise((resolve, reject) => {
+        this.zanActionsheet = {
+          show: true,
+          cancelText,
+          closeOnClickOverlay,
+          actions,
+          // 回调钩子
+          resolve,
+          reject
+        }
+        this.$apply()
+      })
+    },
+    resolveCancelClick() {
+      const zanActionsheetData = this.zanActionsheet || {}
+      const { reject } = zanActionsheetData
+
+      console.info('[zan:actionsheet:cancel]')
+      this.zanActionsheet.show = false
+      this.$apply()
+      reject({
+        type: 'cancel'
+      })
+    },
+    handleZanActionsheetMaskClick({ currentTarget = {} }) {
+      const dataset = currentTarget.dataset || {}
+      const { closeOnClickOverlay } = dataset
+
+      // 判断是否在点击背景时需要关闭弹层
+      if (!closeOnClickOverlay) {
+        return
+      }
+
+      this.methods.resolveCancelClick.call(this)
+    },
+
+    handleZanActionsheetCancelBtnClick(e) {
+      this.methods.resolveCancelClick.call(this)
+    },
+
+    handleZanActionsheetBtnClick({ currentTarget = {} }) {
+      const zanActionsheetData = this.zanActionsheet || {}
+      const { resolve } = zanActionsheetData
+      const dataset = currentTarget.dataset || {}
+      const { index, type } = dataset
+      const action = this.zanActionsheet.actions[index]
+
+      console.log(`item index ${index} clicked`)
+
+      // 如果是分享按钮被点击, 不处理关闭
+      if (type === 'share') {
+        return
+      }
+
+      if (action.asyncJob) {
+        action.loading = true
+        this.$apply()
+
+        action
+          .asyncJob()
+          .then(e => {
+            this.zanActionsheet.show = false
+            action.loding = false
+            this.$apply()
+          })
+          .catch(e => {
+            action.loding = false
+            this.$apply()
+          })
+      } else {
+        this.zanActionsheet.show = false
+        action.loding = false
+      }
+      this.$apply()
+      resolve({
+        type
+      })
+    }
+  }
+  computed = {}
+}
+</script>

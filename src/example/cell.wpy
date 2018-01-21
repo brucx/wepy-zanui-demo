@@ -1,121 +1,126 @@
-<style lang="less">
-.demo {
-  padding: 40px 0;
-  display: flex;
-}
-
-.demo__item {
-  flex: 1;
-}
-
-.demo__icon {
-  margin: 0 auto;
-  width: 48px;
-  height: 48px;
-  background: #ddd;
-  border-radius: 4px;
-}
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/cell.wxss';
+@import '/zanui/icon.wxss';
 </style>
 
 <template>
-  <view class="container">
+<view class="container">
 
-    <view class="doc-title">CELL</view>
+  <view class="doc-title zan-hairline--bottom">CELL</view>
 
-    <view class="zan-panel">
-      <view class="zan-cell">
-        <view class="zan-cell__bd">单行列表</view>
-      </view>
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">单行列表</view>
     </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell">
-        <view class="zan-cell__bd">单行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">单行列表</view>
-        <view class="zan-cell__ft"></view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell zan-cell--switch">
-        <view class="zan-cell__bd">开关</view>
-        <view class="zan-cell__ft">
-          <zanSwitch :checked.sync="checked"> </zanSwitch>
-        </view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">单行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell">
-        <view class="zan-cell__bd">多行列表</view>
-      </view>
-      <view class="zan-cell">
-        <view class="zan-cell__bd">多行列表</view>
-      </view>
-      <view class="zan-cell">
-        <view class="zan-cell__bd">多行列表</view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-      <view class="zan-cell">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-      <view class="zan-cell">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft"></view>
-      </view>
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft"></view>
-      </view>
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft"></view>
-      </view>
-    </view>
-
-    <view class="zan-panel">
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-      <view class="zan-cell zan-cell--access">
-        <view class="zan-cell__bd">多行列表</view>
-        <view class="zan-cell__ft">详细信息</view>
-      </view>
-    </view>
-
   </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">单行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__icon zan-icon zan-icon-checked" style="color:#38f;"></view>
+      <view class="zan-cell__bd">单行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">
+        <view class="zan-cell__text">单行列表</view>
+        <view class="zan-cell__desc">附加描述</view>
+      </view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">单行列表</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--switch">
+      <view class="zan-cell__bd">开关</view>
+      <view class="zan-cell__ft">
+        <zanSwitch :checked.sync="checked" componentId="zanSwitch"> </zanSwitch>
+      </view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">单行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">多行列表</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">多行列表</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">多行列表</view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+    <view class="zan-cell">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft"></view>
+    </view>
+  </view>
+
+  <view class="zan-panel">
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+    <view class="zan-cell zan-cell--access">
+      <view class="zan-cell__bd">多行列表</view>
+      <view class="zan-cell__ft">详细信息</view>
+    </view>
+  </view>
+
+</view>
 </template>
 
 <script>
@@ -123,7 +128,10 @@ import wepy from 'wepy'
 import zanSwitch from '../components/zan-switch'
 
 export default class Cell extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Cell 单元格'
+  }
+
   components = {
     zanSwitch
   }
@@ -131,13 +139,13 @@ export default class Cell extends wepy.page {
     checked: false
   }
   events = {
-    zanSwitchChange({componentId, checked}, event) {
-      console.log(componentId, checked, event)
-      this.checked = checked
+    zanSwitchChange(event) {
+      let { checked } = event.source
+      this.checked = !checked
       this.$apply()
     }
   }
   methods = {}
-  onLoad() { }
+  onLoad() {}
 }
 </script>

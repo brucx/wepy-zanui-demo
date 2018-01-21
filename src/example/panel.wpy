@@ -1,11 +1,11 @@
-<style lang="less">
-
+<style lang='css'>
+@import '/zanui/panel.wxss';
 </style>
 
 <template>
 <view class="container">
 
-  <view class="doc-title">PANEL</view>
+  <view class="doc-title zan-hairline--bottom">PANEL</view>
 
   <view class="zan-panel-title">标题</view>
   <view class="zan-panel">
@@ -14,6 +14,10 @@
 
   <view class="zan-panel">
     <view style="padding: 15px;">内容</view>
+  </view>
+
+  <view class="zan-panel zan-panel--without-border">
+    <view style="padding: 15px;">无边框的panel</view>
   </view>
 
   <view class="zan-panel">
@@ -27,11 +31,12 @@
 import wepy from 'wepy'
 
 export default class Panel extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Panel 面板'
+  }
   components = {}
   data = {}
   methods = {}
-  onLoad() {
-  }
+  onLoad() {}
 }
 </script>

@@ -1,9 +1,9 @@
 <style lang="less">
-.zan-quantity {
+.zan-stepper {
   color: #666;
 }
 
-.zan-quantity view {
+.zan-stepper view {
   display: inline-block;
   line-height: 20px;
   padding: 5px 0;
@@ -15,12 +15,12 @@
   border: 1rpx solid #999;
 }
 
-.zan-quantity .zan-quantity__minus {
+.zan-stepper .zan-stepper__minus {
   border-right: none;
   border-radius: 2px 0 0 2px;
 }
 
-.zan-quantity .zan-quantity__text {
+.zan-stepper .zan-stepper__text {
   border: 1rpx solid #999;
   display: inline-block;
   text-align: center;
@@ -31,41 +31,41 @@
   line-height: 30px;
 }
 
-.zan-quantity .zan-quantity__plus {
+.zan-stepper .zan-stepper__plus {
   border-left: none;
   border-radius: 0 2px 2px 0;
 }
 
-.zan-quantity .zan-quantity--disabled {
+.zan-stepper .zan-stepper--disabled {
   background: #f8f8f8;
   color: #bbb;
   border-color: #e8e8e8;
 }
 
-.zan-quantity--small view {
+.zan-stepper--small view {
   min-width: 36px;
   line-height: 18px;
 }
 
-.zan-quantity--small .zan-quantity__text {
+.zan-stepper--small .zan-stepper__text {
   width: 36px;
   line-height: 28px;
   height: 28px;
 }
 </style>
 <template>
-  <view class="zan-quantity {{ size === 'small' ? 'zan-quantity--small' : '' }}">
-    <view class="zan-quantity__minus {{ quantity <= min ? 'zan-quantity--disabled' : '' }}" data-component-id="{{ componentId }}" data-quantity="{{ quantity }}" data-disabled="{{ quantity <= min }}" bindtap="handleZanQuantityMinus">-</view>
-    <input class="zan-quantity__text {{ min >= max ? 'zan-quantity--disabled' : '' }}" type="number" data-component-id="{{ componentId }}" data-min="{{ min }}" data-max="{{ max }}" value="{{ quantity }}" disabled="{{ min >= max }}" bindblur="handleZanQuantityBlur"></input>
-    <view class="zan-quantity__plus {{ quantity >= max ? 'zan-quantity--disabled' : '' }}" data-component-id="{{ componentId }}" data-quantity="{{ quantity }}" data-disabled="{{ quantity >= max }}" bindtap="handleZanQuantityPlus">+</view>
+  <view class="zan-stepper {{ size === 'small' ? 'zan-stepper--small' : '' }}">
+    <view class="zan-stepper__minus {{ stepper <= min ? 'zan-stepper--disabled' : '' }}" data-component-id="{{ componentId }}" data-stepper="{{ stepper }}" data-disabled="{{ stepper <= min }}" bindtap="handleZanStepperMinus">-</view>
+    <input class="zan-stepper__text {{ min >= max ? 'zan-stepper--disabled' : '' }}" type="number" data-component-id="{{ componentId }}" data-min="{{ min }}" data-max="{{ max }}" value="{{ stepper }}" disabled="{{ min >= max }}" bindblur="handleZanStepperBlur"></input>
+    <view class="zan-stepper__plus {{ stepper >= max ? 'zan-stepper--disabled' : '' }}" data-component-id="{{ componentId }}" data-stepper="{{ stepper }}" data-disabled="{{ stepper >= max }}" bindtap="handleZanStepperPlus">+</view>
   </view>
 </template>
 <script>
 import wepy from 'wepy'
 
-export default class zanQuantity extends wepy.component {
+export default class zanStepper extends wepy.component {
   props = {
-    quantity: {
+    stepper: {
       type: Number,
       default: 0
     },
@@ -77,20 +77,23 @@ export default class zanQuantity extends wepy.component {
       type: Number,
       default: 0
     },
-    size: String,
-    componentId: String,
+    size: {
+      type: String,
+      default: ''
+    },
+    componentId: String
   }
   data = {}
   methods = {
-    handleZanQuantityMinus(e) {
+    handleZanStepperMinus(e) {
       this.handle(e, -1)
     },
 
-    handleZanQuantityPlus(e) {
+    handleZanStepperPlus(e) {
       this.handle(e, +1)
     },
 
-    handleZanQuantityBlur(e) {
+    handleZanStepperBlur(e) {
       let dataset = e.currentTarget.dataset
       let componentId = dataset.componentId
       let max = +dataset.max
@@ -122,20 +125,19 @@ export default class zanQuantity extends wepy.component {
     let dataset = e.currentTarget.dataset
     let componentId = dataset.componentId
     let disabled = dataset.disabled
-    let quantity = +dataset.quantity
+    let stepper = +dataset.stepper
 
     if (disabled) return null
 
-    this.callback(componentId, quantity + num)
+    this.callback(componentId, stepper + num)
   }
 
-  callback(componentId, quantity) {
-    quantity = +quantity
-    let e = { componentId, quantity }
-    console.info('[zan:quantity:change]', e)
+  callback(componentId, stepper) {
+    stepper = +stepper
+    let e = { componentId, stepper }
+    console.info('[zan:stepper:change]', e)
 
-    this.$emit('zanQuantityChange', e)
+    this.$emit('zanStepperChange', e)
   }
 }
-
 </script>

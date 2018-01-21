@@ -1,11 +1,11 @@
-<style lang="less">
+<style lang="css">
 
 </style>
 
 <template>
 <view class="container">
 
-  <view class="doc-title">LOADMORE</view>
+  <view class="doc-title zan-hairline--bottom">LOADMORE</view>
 
   <zanLoadmore1 :loading="_true" > </zanLoadmore1>
   <zanLoadmore2 :nodata="_true" nodata_str="暂无数据 Wepy"></zanLoadmore2>
@@ -18,18 +18,19 @@ import wepy from 'wepy'
 import zanLoadmore from '../components/zan-loadmore'
 
 export default class Loadmore extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Loadmore 加载'
+  }
   components = {
     zanLoadmore1: zanLoadmore,
     zanLoadmore2: zanLoadmore,
-    zanLoadmore3: zanLoadmore,
+    zanLoadmore3: zanLoadmore
   }
   data = {
     _true: true,
     _false: false
   }
   methods = {}
-  onLoad() {
-  }
+  onLoad() {}
 }
 </script>

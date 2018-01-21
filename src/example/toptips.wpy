@@ -3,18 +3,19 @@
 </style>
 
 <template>
+<block>
   <view class="container">
 
-    <view class="doc-title">TOPTIPS</view>
+    <view class="doc-title zan-hairline--bottom">TOPTIPS</view>
 
     <view class="zan-btns" style="margin-top: 30vh;">
-      <button class="zan-btn" @tap="showTopTips">
+      <button class="zan-btn" bindtap="showTopTips">
         显示toptips
       </button>
     </view>
-
-    <zanToptips/>
   </view>
+  <zanToptips/>
+</block>
 </template>
 
 <script>
@@ -22,7 +23,10 @@ import wepy from 'wepy'
 import zanToptips from '../components/zan-toptips'
 
 export default class Toptips extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Toptips 顶部提示'
+  }
+
   components = {
     zanToptips
   }
@@ -32,7 +36,6 @@ export default class Toptips extends wepy.page {
       this.$invoke('zanToptips', 'showZanTopTips', { content: 'toptips的内容 Wepy', options: 1000 })
     }
   }
-  onLoad() {
-  }
+  onLoad() {}
 }
 </script>

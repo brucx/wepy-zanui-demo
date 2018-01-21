@@ -1,0 +1,107 @@
+<style lang="css">
+@import '/zanui/btn.wxss';
+</style>
+
+<template>
+<view class="container">
+
+  <view class="doc-title zan-hairline--bottom">POPUP</view>
+
+  <view class="zan-btns" style="margin-top: 30vh;">
+    <button class="zan-btn" bindtap="togglePopup">
+      弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleTopPopup">
+      从顶部弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleBottomPopup">
+      从底部弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleLeftPopup">
+      从左边弹出popup
+    </button>
+    <button class="zan-btn" bindtap="toggleRightPopup">
+      从右边弹出popup
+    </button>
+  </view>
+
+  <zanPopup1>
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="togglePopup">
+        关闭 popup
+      </button>
+    </view>
+  </zanPopup1>
+
+  <zanPopup2 direction="left">
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="toggleLeftPopup">
+        关闭 popup
+      </button>
+    </view>
+  </zanPopup2>
+
+
+  <zanPopup3 direction="right">
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="toggleRightPopup">
+        关闭 popup
+      </button>
+    </view>
+  </zanPopup3>
+
+  <zanPopup4 direction="top">
+    内容
+  </zanPopup4>
+
+  <zanPopup5 direction="bottom">
+    <view class="zan-btns">
+      <button class="zan-btn" @tap="toggleBottomPopup">
+        关闭 popup
+      </button>
+    </view>
+  </zanPopup5>
+
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import zanPopup from '../components/zan-popup'
+
+export default class Popup extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Popup 弹出层'
+  }
+  components = {
+    zanPopup1: zanPopup,
+    zanPopup2: zanPopup,
+    zanPopup3: zanPopup,
+    zanPopup4: zanPopup,
+    zanPopup5: zanPopup
+  }
+  data = {}
+  methods = {
+    togglePopup() {
+      this.$invoke('zanPopup1', 'togglePopup')
+    },
+
+    toggleLeftPopup() {
+      this.$invoke('zanPopup2', 'togglePopup')
+    },
+
+    toggleRightPopup() {
+      this.$invoke('zanPopup3', 'togglePopup')
+    },
+
+    toggleTopPopup() {
+      this.$invoke('zanPopup4', 'togglePopup')
+    },
+
+    toggleBottomPopup() {
+      this.$invoke('zanPopup5', 'togglePopup')
+    }
+  }
+  onLoad() {}
+}
+</script>

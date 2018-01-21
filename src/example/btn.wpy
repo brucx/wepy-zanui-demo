@@ -1,11 +1,12 @@
-<style lang="less">
-
+<style lang="css">
+@import '/zanui/panel.wxss';
+@import '/zanui/btn.wxss';
 </style>
 
 <template>
   <view class="container">
 
-    <view class="doc-title">BUTTON</view>
+    <view class="doc-title zan-hairline--bottom">BUTTON</view>
 
     <view class="zan-panel-title">普通按钮</view>
     <view class="zan-panel">
@@ -64,7 +65,9 @@
 <script>
 import wepy from 'wepy'
 export default class Button extends wepy.page {
-  config = {}
+  config = {
+    navigationBarTitleText: 'Button 按钮'
+  }
   components = {}
   data = {}
   methods = {}
