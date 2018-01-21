@@ -65,7 +65,7 @@ export default class extends wepy.app {
       'example/tab',
       'example/tag',
       'example/toptips',
-      // 'example/toast'
+      'example/toast'
     ],
     window: {
       navigationBarBackgroundColor: '#FAFAFA',
