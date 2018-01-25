@@ -15,15 +15,15 @@
     <view class="zan-panel-title">基本用法</view>
     <view class="zan-panel">
       <view class="zan-cell zan-cell--last-child">
-        <zanCapsule1 leftText="1折" rightText="限购一份" />
-        <zanCapsule2 leftText="2折" rightText="限购两份" type="danger" />
+        <zanCapsule1 :options="zanCapsule1" />
+        <zanCapsule2 :options="zanCapsule2" />
       </view>
     </view>
 
     <view class="zan-panel-title">自定义颜色</view>
     <view class="zan-panel">
       <view class="zan-cell zan-cell--last-child">
-        <zanCapsule3 leftText="3折" rightText="限购三份" color="#38f" />
+        <zanCapsule3 :options="zanCapsule3" />
       </view>
     </view>
 
@@ -41,9 +41,24 @@ export default class Capsule extends wepy.page {
   components = {
     zanCapsule1: zanCapsule,
     zanCapsule2: zanCapsule,
-    zanCapsule3: zanCapsule,
+    zanCapsule3: zanCapsule
   }
-  data = {}
+  data = {
+    zanCapsule1: {
+      leftText: '1折',
+      rightText: '限购一份'
+    },
+    zanCapsule2: {
+      type: 'danger',
+      leftText: '2折',
+      rightText: '限购两份'
+    },
+    zanCapsule3: {
+      color: '#38f',
+      leftText: '3折',
+      rightText: '限购三份'
+    }
+  }
   methods = {}
   onLoad() {}
 }

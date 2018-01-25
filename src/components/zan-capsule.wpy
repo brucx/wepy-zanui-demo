@@ -40,14 +40,14 @@
 }
 </style>
 <template name="capsule">
-  <view class="zan-capsule zan-capsule--{{type}}">
-    <block wx:if="{{color}}">
-      <view class="zan-capsule__left" style="background: {{ color }}; border-color: {{ color }}">{{ leftText }}</view>
-      <view class="zan-capsule__right" style="color: {{ color }}; border-color: {{ color }}">{{ rightText }}</view>
+  <view class="zan-capsule zan-capsule--{{options.type}}">
+    <block wx:if="{{options.color}}">
+      <view class="zan-capsule__left" style="background: {{ options.color }}; border-color: {{ options.color }}">{{ options.leftText }}</view>
+      <view class="zan-capsule__right" style="color: {{ options.color }}; border-color: {{ options.color }}">{{ options.rightText }}</view>
     </block>
     <block wx:else>
-      <view class="zan-capsule__left">{{ leftText }}</view>
-      <view class="zan-capsule__right">{{ rightText }}</view>
+      <view class="zan-capsule__left">{{ options.leftText }}</view>
+      <view class="zan-capsule__right">{{ options.rightText }}</view>
     </block>
   </view>
 </template>
@@ -56,21 +56,14 @@ import wepy from 'wepy'
 
 export default class zanCapsule extends wepy.component {
   props = {
-    type: {
-      type: String,
-      default: ''
-    },
-    color: {
-      type: String,
-      default: ''
-    },
-    leftText: {
-      type: String,
-      default: ''
-    },
-    rightText: {
-      type: String,
-      default: ''
+    options: {
+      type: Object,
+      default: {
+        type: '',
+        color: '',
+        leftText: '',
+        rightText: ''
+      }
     }
   }
   data = {}
