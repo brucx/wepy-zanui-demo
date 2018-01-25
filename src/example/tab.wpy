@@ -8,13 +8,13 @@
     <view class="doc-title zan-hairline--bottom">TAB</view>
 
     <view style="margin: 20px 0">
-      <zanTab1 :tab.sync="tab1" componentId="tab1"></zanTab1>
+      <zanTab1 :options="tab1" componentId="tab1"></zanTab1>
     </view>
     <view style="margin: 20px 0">
-      <zanTab2 :tab.sync="tab2" componentId="tab2"></zanTab2>
+      <zanTab2 :options="tab2" componentId="tab2"></zanTab2>
     </view>
     <view style="margin: 20px 0">
-      <zanTab3 :tab.sync="tab3" componentId="tab3"></zanTab3>
+      <zanTab3 :options="tab3" componentId="tab3"></zanTab3>
     </view>
   </view>
 </template>
@@ -123,7 +123,7 @@ export default class Tab extends wepy.page {
     }
   }
   events = {
-    zanTabChange(selectedId, event) {
+    zanTabChange({ selectedId }, event) {
       let { componentId } = event.source
       console.log('Page Tab receive selectedId:', componentId, selectedId)
     }
