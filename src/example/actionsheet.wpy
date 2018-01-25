@@ -36,17 +36,10 @@ export default class Actionsheet extends wepy.page {
     zanToptips
   }
   data = {}
-  events = {
-    zanSelectChange(value, event) {
-      let { componentId } = event.source
-      this[`checked_${componentId}`] = value
-      this.$apply()
-    }
-  }
+  events = {}
   methods = {
     toggleActionsheet() {
       this.$invoke('zanActionsheet', 'showZanActionsheet', {
-        show: false,
         cancelText: '关闭 Action',
         closeOnClickOverlay: true,
         actions: [
