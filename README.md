@@ -175,9 +175,9 @@ export default class Capsule extends wepy.page {
 
 ```Vue
 <template>
-	<button @tap="toggleActionsheet">
-	  Actionsheet
-	</button>
+  <button @tap="toggleActionsheet">
+    Actionsheet
+  </button>
   <zanTab :options="tab" componentId="tab" />
 </template>
 
