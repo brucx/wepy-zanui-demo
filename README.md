@@ -20,12 +20,14 @@ git clone git@github.com:Licoy/wepy-zanui-demo.git
 ### 3. 安装开发依赖
 ```bash
 cd wepy-zanui-demo
-yarn
+yarn install / npm install
 ```
 
 ### 4. 编译源代码
 ```bash
 wepy build
+or
+wepy build --watch
 ```
 
 ### 5.导入至开发者工具
