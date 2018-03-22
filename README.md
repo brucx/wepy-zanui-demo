@@ -14,7 +14,7 @@ yarn global add wepy-cli
 
 ### 2. 下载源代码
 ```bash
-git clone https://github.com/brucx/wepy-zanui-demo.git
+git git@github.com:Licoy/wepy-zanui-demo.git
 ```
 
 ### 3. 安装开发依赖
