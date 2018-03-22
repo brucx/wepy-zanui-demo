@@ -10,12 +10,12 @@
   font-size: 14px;
   text-align: center;
   color: #fff;
-  background-color: #e64340;
+  background-color: #44bb00;
   z-index: 110;
 }
 </style>
 <template>
-  <view animation="{{animationData}}" class="zan-toptips"> {{ topTips.content }} </view>
+  <view animation="{{animationData}}" style="background-color:{{color}} !important" class="zan-toptips"> {{ topTips.content }} </view>
 </template>
 <script>
 import wepy from 'wepy'
@@ -24,11 +24,16 @@ export default class zanToptips extends wepy.component {
   props = {}
   data = {
     topTips: {},
-    animationData: {}
+    animationData: {},
+    color: '#44bb00'
+  }
+  setColor(c){
+    this.color = c;
   }
   methods = {
-    showZanTopTips({ content = '', options = {} }, event) {
-      console.log('showZanTopTips', content, options)
+    showZanTopTips({ content = '', options = {},color='#44bb00' }, event) {
+      console.log('showZanTopTips', content, options, color)
+      this.setColor(color);
       let topTips = this.topTips || {}
       // 如果已经有一个计时器在了，就清理掉先
       if (topTips.timer) {
